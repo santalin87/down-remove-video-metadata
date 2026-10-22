@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Remove Video Metadata Online - Free, No Upload</title>
+<meta name="description" content="Remove hidden platform metadata from videos free online. Strip platform tags and re-stamp as Premiere Pro, DaVinci Resolve or CapCut export. 100% in your browser — videos never leave your device.">
+<meta property="og:title" content="Remove Video Metadata Online - Free">
+<meta property="og:description" content="Strip platform metadata from videos and re-stamp as editor exports. No upload, free.">
+<meta property="og:type" content="website">
+<style>
+:root{--brand:#1a73e8;--ink:#1f2937;--muted:#6b7280;--bg:#f9fafb}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:#fff;line-height:1.65}
+.wrap{max-width:960px;margin:0 auto;padding:0 16px}
+header.nav{border-bottom:1px solid #e5e7eb;background:#fff;position:sticky;top:0;z-index:10}
+header.nav .wrap{display:flex;align-items:center;height:56px;gap:16px}
+.logo{font-weight:700;color:var(--brand);text-decoration:none;font-size:18px;white-space:nowrap}
+nav.links a{color:var(--muted);text-decoration:none;margin-right:12px;font-size:13px;white-space:nowrap}
+nav.links a:hover{color:var(--brand)}
+.hero{background:var(--bg);padding:36px 0 28px;text-align:center}
+.hero h1{font-size:30px;margin:0 0 8px;line-height:1.3}
+.hero p.sub{color:var(--muted);margin:0 0 20px;font-size:16px}
+.toolbox{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:24px;max-width:640px;margin:0 auto;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.dropzone{border:2px dashed #c7d7f5;border-radius:8px;padding:40px 16px;cursor:pointer;color:var(--muted);transition:.15s}
+.dropzone:hover,.dropzone.dragover{border-color:var(--brand);color:var(--brand);background:#f0f6ff}
+.dropzone b{color:var(--ink)}
+.limits{font-size:12px;color:var(--muted);margin:8px 0 0}
+.optrow{margin-top:14px;text-align:left;font-size:14px}
+.optrow label{display:block;margin-bottom:6px;font-weight:600}
+.optrow select{width:100%;padding:10px;border:1px solid #d1d5db;border-radius:8px;font-size:15px;background:#fff}
+.btn{display:inline-block;background:var(--brand);color:#fff;border:0;border-radius:8px;padding:12px 30px;font-size:16px;cursor:pointer;margin-top:16px}
+.btn:hover{background:#1558b0}.btn:disabled{opacity:.45;cursor:default}
+.btn.secondary{background:#fff;color:var(--brand);border:1px solid var(--brand);margin-left:8px}
+#status{margin-top:14px;font-size:14px;color:var(--muted);min-height:22px}
+#progressWrap{margin-top:12px;display:none;background:#eef2ff;border-radius:8px;overflow:hidden;height:10px}
+#progressBar{height:100%;width:0;background:var(--brand);transition:width .2s}
+#downloadLink{display:none;margin-top:12px}
+.trust{font-size:13px;color:var(--muted);margin-top:14px}
+.adslot{margin:26px auto;max-width:728px;min-height:90px;background:#f3f4f6;border:1px dashed #d1d5db;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#9ca3af;font-size:13px}
+.related h2,.seo h2,.faq h2{font-size:22px;margin:26px 0 12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.card{border:1px solid #e5e7eb;border-radius:10px;padding:16px;text-decoration:none;color:var(--ink);display:block}
+.card:hover{border-color:var(--brand);box-shadow:0 2px 8px rgba(26,115,232,.08)}
+.card b{display:block;margin-bottom:4px}.card span{font-size:13px;color:var(--muted)}
+.seo p{margin:0 0 14px}.seo ol,.seo ul{margin:0 0 14px;padding-left:22px}.seo li{margin-bottom:8px}
+.faq details{border:1px solid #e5e7eb;border-radius:8px;margin-bottom:8px;padding:12px 16px;background:#fff}
+.faq summary{font-weight:600;cursor:pointer}
+footer{border-top:1px solid #e5e7eb;margin-top:36px;padding:22px 0;color:var(--muted);font-size:13px;text-align:center}
+footer a{color:var(--muted);margin:0 8px;text-decoration:none}
+@media(max-width:700px){.hero h1{font-size:24px}nav.links{display:none}}
+.fcard{display:flex;gap:12px;align-items:center;text-align:left}
+.fthumb{width:112px;height:63px;flex:0 0 112px;background:#eef2f7;border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.fthumb img{width:100%;height:100%;object-fit:cover;display:block}
+.fbadge{font-weight:700;color:#1a73e8;font-size:15px;letter-spacing:1px}
+.fmeta{min-width:0;flex:1}
+.fname{font-weight:600;color:var(--ink);font-size:14px;word-break:break-all;line-height:1.4}
+.fsub{font-size:12px;color:var(--muted);margin-top:2px}
+
+/* NAV-TAGS (2026-10-22): pill nav wraps to multiple rows, no horizontal overflow */
+header.nav .wrap{flex-wrap:wrap;height:auto;min-height:56px;padding-top:8px;padding-bottom:8px;row-gap:6px}
+header.nav nav.links{display:flex;flex-wrap:wrap;gap:6px;align-items:center;flex:1 1 100%;order:3}
+header.nav nav.links a{margin:0;padding:4px 11px;border:1px solid #e5e7eb;border-radius:999px;background:#f8fafc;white-space:nowrap}
+@media(max-width:700px){header.nav nav.links{display:none}}
+
+.navgrp{display:inline-flex;flex-wrap:wrap;gap:6px;align-items:center;flex:0 0 100%}
+.navlbl{font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em}
+</style>
+<style>.langsel{margin-left:auto;background:#fff;border:1px solid #d1d5db;border-radius:8px;padding:6px 8px;font-size:13px;color:#6b7280;cursor:pointer;flex-shrink:0}[dir="rtl"] .langsel{margin-left:0;margin-right:auto}</style>
+</head>
+<body>
+<header class="nav"><div class="wrap">
+<a class="logo" href="../">Download &amp; Clean Tools</a>
+<nav class="links"><a href="../x-video-downloader/">X Video Downloader</a><a href="../remove-video-metadata/">Remove Video Metadata</a></nav>
+</div></header>
+
+<section class="hero"><div class="wrap">
+<h1>Remove Video Metadata Online</h1>
+<p class="sub">Strip hidden platform tags from your videos and re-stamp them as a clean editor export. No upload, no re-encode.</p>
+<div class="toolbox">
+<div class="dropzone" id="dropzone"><b>Drop your video here</b><br>or click to select (MP4, MOV) — or just paste (Ctrl+V)</div>
+<p class="limits">Max file size: 500 MB · Files are processed locally in your browser, nothing is uploaded.</p>
+<input type="file" id="fileInput" hidden accept="video/mp4,video/quicktime,.mp4,.mov">
+<div class="optrow" id="opts" style="display:none">
+<label for="preset">Disguise as export from:</label>
+<select id="preset">
+<option value="pr">Adobe Premiere Pro 2024</option>
+<option value="davinci">DaVinci Resolve 19</option>
+<option value="capcut">CapCut</option>
+</select>
+</div>
+<div id="status"></div>
+<div id="progressWrap"><div id="progressBar"></div></div>
+<button class="btn" id="convertBtn" disabled>Clean Metadata</button>
+<a class="btn secondary" id="downloadLink" download>Download</a>
+<p class="trust">100% free · Processed locally in your browser · Your videos never leave your device</p>
+<p class="trust" style="margin-top:4px">First run loads the video engine (~30MB, one time). Processing itself is instant — no re-encoding.</p>
+</div></div></section>
+
+
+<section class="related"><div class="wrap">
+<h2>Related tools</h2>
+<div class="cards">
+<a class="card" href="../x-video-downloader/"><b>X Video Downloader</b><span>Download videos & GIFs from X (Twitter) and save them as MP4.</span></a>
+</div></div></section>
+
+<section class="seo"><div class="wrap">
+<h2>What hidden data do downloaded videos carry?</h2>
+<p>Videos downloaded from platforms are rarely "clean". They typically carry several layers of identifying information: <b>platform SEI codes</b> — small data packets embedded directly in the video stream that record which platform the file came from; <b>container metadata</b> — title, author, creation tool and encoder strings stored in the file header; and <b>chapter markers</b> or custom data boxes the platform injected. Re-uploading such a file elsewhere lets the new platform read exactly where it came from.</p>
+<h2>How this tool cleans your video (3 steps)</h2>
+<ol>
+<li><b>Select your video.</b> Click the box or drag it in. It is read directly by your browser — nothing uploads.</li>
+<li><b>Choose an editor preset and clean.</b> One click strips platform SEI codes (H.264 and HEVC), wipes container metadata and chapters, and re-stamps the file as an export from Premiere Pro, DaVinci Resolve, or CapCut — including the encoder identification string.</li>
+<li><b>Download.</b> The file is stream-copied, so processing takes seconds and quality is 100% identical — not a single pixel is re-encoded.</li>
+</ol>
+<h2>Why no re-encoding matters</h2>
+<p>Most "cleaning" advice tells you to re-encode the video, which degrades quality and takes minutes. This tool only rewrites the container: the video and audio streams are copied bit-for-bit (<b>stream copy</b>), while the metadata layer is rebuilt from scratch. The result is mathematically identical video with a clean identity — done in seconds, even for large files.</p>
+<h2>Private by design: nothing is uploaded</h2>
+<p>This tool runs FFmpeg, the industry-standard video engine, compiled to WebAssembly and executed entirely inside your browser tab. Your video never travels over the network. The metadata surgery (including the encoder-string patch) also happens locally in your browser's memory.</p>
+<h2>An honest note on "originality"</h2>
+<p>Cleaning metadata defeats <b>metadata-level and file-hash</b> identification: the file hash changes, platform codes are gone, and the encoder string reads as your chosen editor. It does <b>not</b> defeat content-based fingerprinting — if a platform recognizes the actual pictures and sounds, no metadata trick will hide that. Use this tool for what it is: a fast, lossless metadata cleaner, not an invisibility cloak.</p>
+</div></section>
+
+
+<section class="faq"><div class="wrap">
+<h2>Frequently asked questions</h2>
+<details><summary>Is this video metadata remover really free?</summary><p>Yes — unlimited cleanings, no account, no watermark. Everything runs on your device.</p></details>
+<details><summary>Are my videos uploaded anywhere?</summary><p>No. The entire process — stream copy plus metadata surgery — happens locally via FFmpeg in WebAssembly inside your browser. The video never leaves your device.</p></details>
+<details><summary>Will cleaning reduce video quality?</summary><p>Not by a single pixel. Video and audio streams are copied bit-for-bit without re-encoding; only the metadata container is rebuilt.</p></details>
+<details><summary>Which editor presets are available?</summary><p>Adobe Premiere Pro 2024, DaVinci Resolve 19, and CapCut. Each preset sets matching export comments and encoder identification strings.</p></details>
+<details><summary>Does it work on HEVC / H.265 videos?</summary><p>Yes. Platform SEI codes are stripped for both H.264 and HEVC streams.</p></details>
+<details><summary>How fast is it?</summary><p>Seconds, even for large files — there is no re-encoding, just a container rewrite plus a small binary patch.</p></details>
+<details><summary>Will platforms treat the result as original?</summary><p>Metadata-level checks (file hash, platform codes, encoder strings) will see a clean editor export. Content-based fingerprinting that recognizes the actual footage is a different layer this tool does not address.</p></details>
+</div></section>
+
+<footer><div class="wrap">
+<p>© 2026 Download &amp; Clean Tools. For personal use only — respect creators’ rights.</p>
+</div></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/dist/umd/ffmpeg.js"></script>
+<script>
+/* Inline helpers replacing the broken UMD build of ffmpeg-util */
+var FFmpegUtilShim = {
+  toBlobURL: async function(url, mimeType) {
+    var resp = await fetch(url);
+    return URL.createObjectURL(await resp.blob());
+  },
+  fetchFile: async function(file) {
+    if (typeof file === 'string') {
+      var r = await fetch(file);
+      return new Uint8Array(await r.arrayBuffer());
+    }
+    return new Uint8Array(await file.arrayBuffer());
+  }
+};
+</script>
+<script>
+(function(){
+var dz=document.getElementById('dropzone'),fi=document.getElementById('fileInput'),
+    btn=document.getElementById('convertBtn'),st=document.getElementById('status'),
+    dl=document.getElementById('downloadLink'),opts=document.getElementById('opts'),
+    presetSel=document.getElementById('preset'),
+    pw=document.getElementById('progressWrap'),pb=document.getElementById('progressBar'),
+    file=null,ffmpeg=null,loaded=false;
+var PRESETS={
+  pr:{comment:'Exported with Adobe Premiere Pro 2024',tool:'Adobe Premiere Pro 2024',suffix:'pr-edition'},
+  davinci:{comment:'Exported with DaVinci Resolve 19',tool:'DaVinci Resolve 19',suffix:'davinci-edition'},
+  capcut:{comment:'Exported with CapCut',tool:'CapCut',suffix:'capcut-edition'}
+};
+function setStatus(t){st.textContent=t;}
+dz.addEventListener('click',function(){fi.click();});
+['dragover','dragenter'].forEach(function(e){dz.addEventListener(e,function(ev){ev.preventDefault();dz.classList.add('dragover');});});
+['dragleave','drop'].forEach(function(e){dz.addEventListener(e,function(ev){ev.preventDefault();dz.classList.remove('dragover');});});
+dz.addEventListener('drop',function(ev){if(ev.dataTransfer.files.length)pick(ev.dataTransfer.files[0]);});
+fi.addEventListener('change',function(){if(fi.files.length)pick(fi.files[0]);});
+document.addEventListener('paste',function(ev){var dt=ev.clipboardData,f=null,i;if(!dt)return;if(dt.files&&dt.files.length)f=dt.files[0];else if(dt.items){for(i=0;i<dt.items.length;i++){if(dt.items[i].kind==='file'){f=dt.items[i].getAsFile();break;}}}if(f){ev.preventDefault();pick(f);}});
+function fmt(b){return b>1048576?(b/1048576).toFixed(1)+' MB':Math.round(b/1024)+' KB';}
+var MAX_FILE=500*1024*1024,WARN_FILE=200*1024*1024;
+function sizeOK(f){
+  if(f.size>MAX_FILE){setStatus('File too large ('+fmt(f.size)+'). Maximum file size is 500 MB.');return false;}
+  return true;
+}
+function sizeWarn(f){return f.size>WARN_FILE?' (Large file: may be slow on phones with limited memory.)':'';}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function fmtSize(b){return b>1048576?(b/1048576).toFixed(1)+' MB':Math.round(b/1024)+' KB';}
+function thumbForVideo(f,cb){var v=document.createElement('video');v.muted=true;v.preload='auto';var done=false;function fin(url){if(!done){done=true;try{URL.revokeObjectURL(v.src);}catch(e){}cb(url);}}v.onseeked=function(){try{var c=document.createElement('canvas');var w=160;var h=Math.round(w*(v.videoHeight/v.videoWidth));if(!isFinite(h)||h<=0)h=90;c.width=w;c.height=h;c.getContext('2d').drawImage(v,0,0,w,h);fin(c.toDataURL('image/jpeg',0.7));}catch(e){fin(null);}};v.onloadeddata=function(){try{var d=v.duration;v.currentTime=(d&&isFinite(d))?Math.min(0.5,d/3):0.1;}catch(e){fin(null);}};v.onerror=function(){fin(null);};setTimeout(function(){fin(null);},5000);try{v.src=URL.createObjectURL(f);}catch(e){fin(null);}}
+function renderFileCard(f){var ext=(f.name.split('.').pop()||'file').toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,4)||'FILE';dz.innerHTML='<div class="fcard"><div class="fthumb" id="fthumb"><span class="fbadge">'+ext+'</span></div><div class="fmeta"><div class="fname">'+escapeHtml(f.name)+'</div><div class="fsub">'+fmtSize(f.size)+'</div></div></div>';var isVid=/video/i.test(f.type||'')||/\.(mp4|mov|webm|mkv|avi)$/i.test(f.name);if(isVid){thumbForVideo(f,function(url){var t=document.getElementById('fthumb');if(t&&url){t.innerHTML='<img src="'+url+'" alt="">';}});}}
+function pick(f){if(!sizeOK(f))return;
+renderFileCard(f);file=f;btn.disabled=false;opts.style.display='block';dl.style.display='none';setStatus('Ready: '+f.name+' ('+fmt(f.size)+'). Choose a preset, then clean.'+sizeWarn(f));}
+async function ensureLoaded(){
+  if(loaded)return;
+  setStatus('Loading video engine (~30MB, first time only)…');btn.disabled=true;
+  var FF=window.FFmpegWASM,U=FFmpegUtilShim;
+  ffmpeg=new FF.FFmpeg();
+  ffmpeg.on('progress',function(p){pw.style.display='block';pb.style.width=Math.round((p.progress||0)*100)+'%';});
+  var base='https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.6/dist/esm';
+  await ffmpeg.load({classWorkerURL:await U.toBlobURL('https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/dist/umd/814.ffmpeg.js','text/javascript'),
+    coreURL:base+'/ffmpeg-core.js',wasmURL:base+'/ffmpeg-core.wasm'});
+  loaded=true;btn.disabled=false;
+}
+/* Equal-length binary patch: replace Lavf encoder string with the preset tool string */
+function patchEncoder(data,toolStr){
+  var CH=8192,s='';
+  for(var i=0;i<data.length;i+=CH){s+=String.fromCharCode.apply(null,data.subarray(i,Math.min(i+CH,data.length)));}
+  var out=s.replace(/Lavf\d+\.\d+\.\d+/g,function(m){return (toolStr+' '.repeat(m.length)).slice(0,m.length);});
+  if(out===s)return data;
+  var res=new Uint8Array(data.length);
+  for(var j=0;j<out.length;j++)res[j]=out.charCodeAt(j)&255;
+  return res;
+}
+btn.addEventListener('click',async function(){
+  if(!file)return;
+  try{
+    await ensureLoaded();
+    btn.disabled=true;pw.style.display='block';pb.style.width='15%';
+    setStatus('Cleaning metadata…');
+    var U=FFmpegUtilShim,P=PRESETS[presetSel.value];
+    var inName='in_'+file.name.replace(/[^a-zA-Z0-9.]/g,'_');
+    var ext=(file.name.match(/\.[^.]+$/)||['.mp4'])[0].toLowerCase();
+    if(ext!=='.mp4'&&ext!=='.mov')ext='.mp4';
+    var outName='out'+ext;
+    await ffmpeg.writeFile(inName,await U.fetchFile(file));
+    pb.style.width='45%';
+    await ffmpeg.exec(['-i',inName,
+      '-c','copy',
+      '-bsf:v','filter_units=remove_types=6,filter_units=remove_types=39|40',
+      '-map_metadata','-1','-map_chapters','-1',
+      '-metadata','comment='+P.comment,
+      '-metadata:s:v:0','handler_name=VideoHandler',
+      '-metadata:s:a:0','handler_name=SoundHandler',
+      '-movflags','+faststart',outName]);
+    pb.style.width='80%';setStatus('Patching encoder ID…');
+    var data=await ffmpeg.readFile(outName);
+    data=patchEncoder(data,P.tool);
+    var blob=new Blob([data.buffer],{type:'video/mp4'});
+    var url=URL.createObjectURL(blob);
+    var base=file.name.replace(/\.[^.]+$/,'');
+    dl.href=url;dl.download=base+'_'+P.suffix+ext;
+    dl.textContent='Download ('+fmt(blob.size)+')';dl.style.display='inline-block';
+    setStatus('Done! Metadata cleaned — stamped as '+P.comment+'.');
+    await ffmpeg.deleteFile(inName);await ffmpeg.deleteFile(outName);
+  }catch(err){console.error(err);setStatus('Something went wrong: '+(err&&err.message?err.message:err));}
+  btn.disabled=false;pw.style.display='none';
+});
+})();
+</script>
+</body>
+</html>

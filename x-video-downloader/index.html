@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>X Video Downloader - Download Twitter/X Videos & GIFs Free</title>
+<meta name="description" content="Download videos and GIFs from X (Twitter) free online. Paste a tweet link, pick a quality, save as MP4. No signup, no watermark, no app.">
+<meta property="og:title" content="X Video Downloader - Save X/Twitter Videos Free">
+<meta property="og:description" content="Paste an X link, download the video or GIF as MP4. Free, no signup, no watermark.">
+<meta property="og:type" content="website">
+<style>
+:root{--brand:#1a73e8;--ink:#1f2937;--muted:#6b7280;--bg:#f9fafb}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:#fff;line-height:1.65}
+.wrap{max-width:960px;margin:0 auto;padding:0 16px}
+header.nav{border-bottom:1px solid #e5e7eb;background:#fff;position:sticky;top:0;z-index:10}
+header.nav .wrap{display:flex;align-items:center;height:56px;gap:16px}
+.logo{font-weight:700;color:var(--brand);text-decoration:none;font-size:18px;white-space:nowrap}
+nav.links a{color:var(--muted);text-decoration:none;margin-right:12px;font-size:13px;white-space:nowrap}
+nav.links a:hover{color:var(--brand)}
+.hero{background:var(--bg);padding:36px 0 28px;text-align:center}
+.hero h1{font-size:30px;margin:0 0 8px;line-height:1.3}
+.hero p.sub{color:var(--muted);margin:0 0 20px;font-size:16px}
+.toolbox{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:24px;max-width:640px;margin:0 auto;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.dropzone{border:2px dashed #c7d7f5;border-radius:8px;padding:28px 16px;color:var(--muted);transition:.15s}
+.dropzone b{color:var(--ink)}
+.urlrow{display:flex;gap:8px;margin-top:14px}
+.urlrow input{flex:1;min-width:0;padding:12px 14px;border:1px solid #d1d5db;border-radius:8px;font-size:14px}
+.urlrow input:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px rgba(26,115,232,.15)}
+.limits{font-size:12px;color:var(--muted);margin:8px 0 0}
+.btn{display:inline-block;background:var(--brand);color:#fff;border:0;border-radius:8px;padding:12px 30px;font-size:16px;cursor:pointer;margin-top:16px}
+.btn:hover{background:#1558b0}.btn:disabled{opacity:.45;cursor:default}
+#status{margin-top:14px;font-size:14px;color:var(--muted);min-height:22px}
+#result{display:none;margin-top:16px;text-align:left;border:1px solid #e5e7eb;border-radius:10px;padding:16px}
+#result .meta{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+#result img.thumb{width:120px;height:68px;object-fit:cover;border-radius:8px;background:#eef2f7}
+#result .t{font-weight:600;font-size:14px;line-height:1.4}
+#result .a{font-size:12px;color:var(--muted)}
+.fmt{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;border-top:1px solid #f0f2f5;font-size:14px}
+.fmt .q{font-weight:600}
+.fmt .s{color:var(--muted);font-size:12px}
+.dl{background:var(--brand);color:#fff;text-decoration:none;border-radius:8px;padding:8px 18px;font-size:14px;white-space:nowrap}
+.dl:hover{background:#1558b0}
+.trust{font-size:13px;color:var(--muted);margin-top:14px}
+.cleanrow{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px;font-size:14px;color:var(--muted);flex-wrap:wrap;cursor:pointer}
+.cleanrow input[type=checkbox]{width:16px;height:16px;accent-color:var(--brand)}
+.cleanrow select{padding:6px 8px;border:1px solid #d1d5db;border-radius:8px;font-size:13px;color:var(--ink);background:#fff}
+.adslot{margin:26px auto;max-width:728px;min-height:90px;background:#f3f4f6;border:1px dashed #d1d5db;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#9ca3af;font-size:13px}
+.related h2,.seo h2,.faq h2{font-size:22px;margin:26px 0 12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.card{border:1px solid #e5e7eb;border-radius:10px;padding:16px;text-decoration:none;color:var(--ink);display:block}
+.card:hover{border-color:var(--brand);box-shadow:0 2px 8px rgba(26,115,232,.08)}
+.card b{display:block;margin-bottom:4px}.card span{font-size:13px;color:var(--muted)}
+.seo p{margin:0 0 14px}.seo ol,.seo ul{margin:0 0 14px;padding-left:22px}.seo li{margin-bottom:8px}
+.faq details{border:1px solid #e5e7eb;border-radius:8px;margin-bottom:8px;padding:12px 16px;background:#fff}
+.faq summary{font-weight:600;cursor:pointer}
+footer{border-top:1px solid #e5e7eb;margin-top:36px;padding:22px 0;color:var(--muted);font-size:13px;text-align:center}
+footer a{color:var(--muted);margin:0 8px;text-decoration:none}
+@media(max-width:700px){.hero h1{font-size:24px}nav.links{display:none}.urlrow{flex-direction:column}}
+
+/* NAV-TAGS (2026-10-22): pill nav wraps to multiple rows, no horizontal overflow */
+header.nav .wrap{flex-wrap:wrap;height:auto;min-height:56px;padding-top:8px;padding-bottom:8px;row-gap:6px}
+header.nav nav.links{display:flex;flex-wrap:wrap;gap:6px;align-items:center;flex:1 1 100%;order:3}
+header.nav nav.links a{margin:0;padding:4px 11px;border:1px solid #e5e7eb;border-radius:999px;background:#f8fafc;white-space:nowrap}
+@media(max-width:700px){header.nav nav.links{display:none}}
+
+.navgrp{display:inline-flex;flex-wrap:wrap;gap:6px;align-items:center;flex:0 0 100%}
+.navlbl{font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em}
+</style>
+<style>.langsel{margin-left:auto;background:#fff;border:1px solid #d1d5db;border-radius:8px;padding:6px 8px;font-size:13px;color:#6b7280;cursor:pointer;flex-shrink:0}[dir="rtl"] .langsel{margin-left:0;margin-right:auto}</style>
+</head>
+<body>
+<header class="nav"><div class="wrap">
+<a class="logo" href="../">Download &amp; Clean Tools</a>
+<nav class="links"><a href="../x-video-downloader/">X Video Downloader</a><a href="../remove-video-metadata/">Remove Video Metadata</a></nav>
+</div></header>
+
+<section class="hero"><div class="wrap">
+<h1>X Video Downloader — Save X/Twitter Videos &amp; GIFs</h1>
+<p class="sub">Paste an X (Twitter) link, pick a quality, download as MP4. Free, no signup, no watermark.</p>
+<div class="toolbox">
+<div class="dropzone" id="dropzone"><b>Paste a video link</b><br>from X / Twitter, YouTube, Pinterest, TikTok and more</div>
+<div class="urlrow"><input type="url" id="urlInput" placeholder="https://x.com/username/status/123456789…" autocomplete="off"><button class="btn" id="convertBtn" style="margin-top:0">Fetch Video</button></div>
+<label class="cleanrow"><input type="checkbox" id="cleanMeta"><span id="cleanLabel"></span><select id="cleanPreset" aria-label="preset"><option value="pr">Adobe Premiere Pro 2024</option><option value="davinci">DaVinci Resolve 19</option><option value="capcut">CapCut</option></select></label>
+<p class="limits">Works with public posts only. Private, deleted or login-walled videos can't be fetched.</p>
+<div id="status"></div>
+<div id="result"></div>
+<p class="trust">100% free · No signup · No watermark · No app to install</p>
+</div></div></section>
+
+
+<section class="related"><div class="wrap">
+<h2>Related tools</h2>
+<div class="cards">
+<a class="card" href="../remove-video-metadata/"><b>Remove Video Metadata</b><span>Strip hidden platform metadata from a video and re-stamp it as a clean editor export.</span></a>
+</div></div></section>
+
+<section class="seo"><div class="wrap">
+<h2>How to download a video from X</h2>
+<ol>
+<li>Open the post on X (Twitter) that contains the video or GIF, tap Share, then Copy Link.</li>
+<li>Paste the link into the box above and click Fetch Video.</li>
+<li>Pick a quality from the list — the MP4 downloads straight to your device.</li>
+</ol>
+<p>Fun fact: X doesn't actually store GIFs as GIFs. When someone posts a GIF, X converts it to a looping MP4 video behind the scenes — that's why right-click saving never works. This tool grabs that original MP4, so you get the exact quality X serves, usually far smaller and sharper than a converted GIF.</p>
+<h2>Which sites are supported?</h2>
+<p>X / Twitter is the focus: videos, GIFs and multi-video posts. The same box also handles YouTube, Pinterest, TikTok and most public video pages — if a page has a playable video, it can usually be fetched. Anything behind a login, paywall, or deleted post can't be downloaded, and neither can private accounts.</p>
+<p>Downloads are yours to keep for personal use. Respect the original creator's rights — don't re-upload someone else's video as your own.</p>
+</div></section>
+
+<section class="faq"><div class="wrap">
+<h2>FAQ</h2>
+<details><summary>Is the X video downloader free?</summary><p>Yes, completely free with no signup and no watermark. There are no download limits for normal use.</p></details>
+<details><summary>What quality will I get?</summary><p>Up to the original quality X serves for that post — often 720p or 1080p for videos. Pick the highest option in the list for the best file.</p></details>
+<details><summary>Why can't I download this post?</summary><p>Usually one of three reasons: the post was deleted, the account is private or suspended, or X is temporarily rate-limiting requests. Public posts from public accounts work best — try again in a few minutes if it fails once.</p></details>
+<details><summary>Can I download an X GIF as a real GIF file?</summary><p>X stores GIFs as MP4 videos, so you download an MP4. If you need an actual .gif file, run it through our MP4 to GIF tool afterwards.</p></details>
+<details><summary>Do I need to install anything?</summary><p>No. Everything runs in your browser — paste the link, fetch, download. Works on phones, tablets and desktops.</p></details>
+<details><summary>Can I remove metadata while downloading?</summary><p>Yes — tick "Remove metadata after download", pick an editor preset, then hit Download. The video is fetched and cleaned in one step, stamped as if exported from Premiere, DaVinci or CapCut.</p></details>
+</div></section>
+
+<footer><div class="wrap">
+<p>© 2026 Download &amp; Clean Tools. For personal use only — respect creators’ rights.</p>
+</div></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/dist/umd/ffmpeg.js"></script>
+<script>
+var FFmpegUtilShim={toBlobURL:async function(u,m){var r=await fetch(u);return URL.createObjectURL(await r.blob());},fetchFile:async function(f){if(typeof f==='string'){var r=await fetch(f);return new Uint8Array(await r.arrayBuffer());}return new Uint8Array(await f.arrayBuffer());}};
+</script>
+<script>
+(function(){
+"use strict";
+var input=document.getElementById('urlInput'),btn=document.getElementById('convertBtn'),
+    status=document.getElementById('status'),result=document.getElementById('result');
+var PARSE='https://snap-parse-proxy.santalin87.workers.dev/parse', /* via standalone CORS proxy worker */
+    PROXY='https://vidsnap-dl.santalin87.workers.dev/';
+var DL='Download';
+var CLEAN_LABEL='Remove metadata after download';
+document.getElementById('cleanLabel').textContent=CLEAN_LABEL;
+var DOWNLOADING='Downloading video…',LOADING_ENGINE='Loading video engine (~30MB, first time only)…',
+    CLEANING='Removing metadata…',CLEAN_DONE='Done! Cleaned file saved.',
+    CLEAN_FAIL='Cleanup failed — downloading original instead.';
+var PRESETS={pr:{comment:'Exported with Adobe Premiere Pro 2024',tool:'Adobe Premiere Pro 2024',suffix:'pr-edition'},
+  davinci:{comment:'Exported with DaVinci Resolve 19',tool:'DaVinci Resolve 19',suffix:'davinci-edition'},
+  capcut:{comment:'Exported with CapCut',tool:'CapCut',suffix:'capcut-edition'}};
+var cleanChk=document.getElementById('cleanMeta'),cleanPreset=document.getElementById('cleanPreset');
+var ffmpeg=null,ffLoaded=false;
+async function ensureFF(){
+ if(ffLoaded)return;
+ setStatus(LOADING_ENGINE);btn.disabled=true;
+ var FF=window.FFmpegWASM,U=FFmpegUtilShim;
+ ffmpeg=new FF.FFmpeg();
+ var base='https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.6/dist/esm';
+ await ffmpeg.load({classWorkerURL:await U.toBlobURL('https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/dist/umd/814.ffmpeg.js','text/javascript'),
+  coreURL:base+'/ffmpeg-core.js',wasmURL:base+'/ffmpeg-core.wasm'});
+ ffLoaded=true;btn.disabled=false;
+}
+function patchEncoder(data,toolStr){
+ var CH=8192,s='';
+ for(var i=0;i<data.length;i+=CH){s+=String.fromCharCode.apply(null,data.subarray(i,Math.min(i+CH,data.length)));}
+ var out=s.replace(/Lavf\d+\.\d+\.\d+/g,function(m){return (toolStr+' '.repeat(m.length)).slice(0,m.length);});
+ if(out===s)return data;
+ var res=new Uint8Array(data.length);
+ for(var j=0;j<out.length;j++)res[j]=out.charCodeAt(j)&255;
+ return res;
+}
+result.addEventListener('click',function(e){
+ var a=e.target&&e.target.closest?e.target.closest('a.dl'):null;
+ if(!a||!cleanChk.checked)return;
+ e.preventDefault();
+ var url=a.getAttribute('href');
+ (async function(){
+  try{
+   setStatus(DOWNLOADING);btn.disabled=true;
+   var buf=new Uint8Array(await(await fetch(url)).arrayBuffer());
+   await ensureFF();
+   setStatus(CLEANING);
+   var P=PRESETS[cleanPreset.value]||PRESETS.pr,ext=a.getAttribute('data-ext')||'mp4';
+   await ffmpeg.writeFile('in.mp4',buf);
+   await ffmpeg.exec(['-i','in.mp4','-c','copy','-bsf:v','filter_units=remove_types=6,filter_units=remove_types=39|40',
+    '-map_metadata','-1','-map_chapters','-1','-metadata','comment='+P.comment,
+    '-metadata:s:v:0','handler_name=VideoHandler','-metadata:s:a:0','handler_name=SoundHandler',
+    '-movflags','+faststart','out.mp4']);
+   var data=patchEncoder(await ffmpeg.readFile('out.mp4'),P.tool);
+   var blob=new Blob([data.buffer],{type:'video/mp4'});
+   var base=safeName(a.getAttribute('data-title')||'video',ext).replace(/\.[^.]+$/,'');
+   var ta=document.createElement('a');
+   ta.href=URL.createObjectURL(blob);ta.download=base+'_'+P.suffix+'.'+ext;
+   document.body.appendChild(ta);ta.click();ta.remove();
+   await ffmpeg.deleteFile('in.mp4');await ffmpeg.deleteFile('out.mp4');
+   setStatus(CLEAN_DONE);
+  }catch(err){
+   setStatus(CLEAN_FAIL);
+   var fa=document.createElement('a');fa.href=url;document.body.appendChild(fa);fa.click();fa.remove();
+  }
+  btn.disabled=false;
+ })();
+});
+function setStatus(t){status.textContent=t||'';}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function safeName(s,ext){
+ s=String(s||'video').replace(/[^\w\-]+/g,'_').replace(/_+/g,'_').replace(/^_|_$/g,'').slice(0,60)||'video';
+ return s+'.'+ext;
+}
+function fmtSize(mb){return mb?(mb<1?(mb*1024).toFixed(0)+' KB':mb.toFixed(1)+' MB'):'';}
+btn.addEventListener('click',function(){
+ var url=input.value.trim();
+ if(!/^https?:\/\//i.test(url)){setStatus('Please paste a valid video link (starting with http).');return;}
+ btn.disabled=true;result.style.display='none';result.innerHTML='';
+ setStatus('Fetching video info…');
+ fetch(PARSE,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({url:url})})
+ .then(function(r){return r.json().then(function(j){return{ok:r.ok,j:j};});})
+ .then(function(o){
+  btn.disabled=false;
+  if(!o.ok||!o.j||!o.j.formats||!o.j.formats.video||!o.j.formats.video.length){
+   setStatus('Could not fetch this video. It may be private, deleted, or from an unsupported page.');
+   return;
+  }
+  var d=o.j;
+  setStatus('Choose a quality to download:');
+  var h='<div class="meta">';
+  if(d.thumbnail)h+='<img class="thumb" src="'+esc(d.thumbnail)+'" alt="">';
+  h+='<div><div class="t">'+esc(d.title||'Video')+'</div><div class="a">'+esc(d.author||d.platform||'')+
+     (d.duration?' · '+Math.round(d.duration)+'s':'')+'</div></div></div>';
+  d.formats.video.forEach(function(f){
+   var dl=PROXY+'?url='+encodeURIComponent(f.url)+
+          '&filename='+encodeURIComponent(safeName(d.title,f.ext||'mp4'))+'&threads=4';
+   h+='<div class="fmt"><div><span class="q">'+esc(f.quality||f.ext||'MP4')+'</span> '+
+      '<span class="s">'+esc(f.ext||'mp4').toUpperCase()+(f.size_mb?' · '+fmtSize(f.size_mb):'')+'</span></div>'+
+      '<a class="dl" href="'+esc(dl)+'" data-ext="'+esc(f.ext||'mp4')+'" data-title="'+esc(d.title||'Video')+'">'+DL+'</a></div>';
+  });
+  result.innerHTML=h;result.style.display='block';
+ })
+ .catch(function(){
+  btn.disabled=false;
+  setStatus('Could not fetch this video. It may be private, deleted, or from an unsupported page.');
+ });
+});
+document.addEventListener('paste',function(e){
+ if(document.activeElement===input)return;
+ var t=(e.clipboardData||{}).getData?e.clipboardData.getData('text'): '';
+ if(t&&/^https?:\/\//i.test(t.trim())){input.value=t.trim();input.focus();}
+});
+input.addEventListener('keydown',function(e){if(e.key==='Enter')btn.click();});
+})();
+</script>
+</body>
+</html>
